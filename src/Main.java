@@ -38,10 +38,10 @@ public class Main {
         double result = 0;
         double num1, num2;
         System.out.println("Введите первое число: ");
-        num1 = setNum();
+        num1 = setNumDouble();
 
         System.out.println("Введите второе число: ");
-        num2 = setNum();
+        num2 = setNumDouble();
 
         switch (op) {
             case 1: result = num1+num2; break;
@@ -59,12 +59,12 @@ public class Main {
         double result = 0;
         double num, power;
         System.out.println("Введите число: ");
-        num = setNum();
+        num = setNumDouble();
         System.out.println("Введите степень: ");
-        power = setNum();
+        power = setNumDouble();
         result = Math.pow(num, power);
         if(Double.isNaN(result) || Double.isFinite(result) || Double.isInfinite(result)) {
-            System.out.println("Это нельзя возвести в степень");
+            System.out.println(num + " нельзя возвести в "+power+" степень");
             return;
         }
         if(result-(int)result==0)
@@ -73,19 +73,53 @@ public class Main {
     }
 
     private static void sqrt() {
+        double result = 0;
+        double num;
+        System.out.println("Введите число: ");
+        num = setNumDouble();
+        result = Math.sqrt(num);
+        if(Double.isNaN(result) || Double.isFinite(result) || Double.isInfinite(result)) {
+            System.out.println("Из "+num+" нельзя вычислить корень");
+            return;
+        }
 
+        if(result-(int)result==0)
+            System.out.println("Результат: "+(int)result);
+        else System.out.println("Результат: "+result);
     }
 
     private static void numSys() {
-
+        String result = "";
+        int num;
+        int numSys = 0;
+        System.out.println("Введите десятичное число (целый тип): ");
+        num = setNumInt();
+        do{
+            System.out.println("Введите систему счисления (от 2 до 36): ");
+            numSys = setNumInt();
+        }while(numSys<2);
+        result = Integer.toString(num, numSys);
+        System.out.println(num + " в "+numSys+" системе счисления = "+result);
     }
 
-    private static double setNum() {
+    private static double setNumDouble() {
         String str;
         while(true) {
             str = scanner.next();
             try {
                 return Double.parseDouble(str);
+            } catch (Exception e) {
+                System.out.println("Введено неправильное значение");
+            }
+        }
+    }
+
+    private static int setNumInt() {
+        String str;
+        while(true) {
+            str = scanner.next();
+            try {
+                return Integer.parseInt(str);
             } catch (Exception e) {
                 System.out.println("Введено неправильное значение");
             }
