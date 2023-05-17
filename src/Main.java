@@ -90,16 +90,19 @@ public class Main {
 
     private static void numSys() {
         String result = "";
-        int num;
+        long num;
         int numSys = 0;
-        System.out.println("Введите десятичное число (целый тип): ");
-        num = setNumInt();
+        System.out.println("В какой системе счисления число?(2,8,10,16): ");
         do{
-            System.out.println("Введите систему счисления (от 2 до 36): ");
             numSys = setNumInt();
-        }while(numSys<2);
-        result = Integer.toString(num, numSys);
-        System.out.println(num + " в "+numSys+" системе счисления = "+result);
+        }while(numSys != 2 && numSys != 8 && numSys != 10 && numSys != 16);
+
+        System.out.println("Введите число в "+numSys+" системе счисления: ");
+        num = Long.parseLong(scanner.next(), numSys);
+        System.out.println("В двоичной системе счисления: "+ Long.toString(num, 2));
+        System.out.println("В восьмеричной системе счисления: "+ Long.toString(num, 8));
+        System.out.println("В десятичной системе счисления: "+ Long.toString(num, 10));
+        System.out.println("В шестнадцатеричной системе счисления: "+ Long.toString(num, 16));
     }
 
     private static double setNumDouble() {
